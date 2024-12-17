@@ -20,6 +20,7 @@ type Presentation = {
 
 type Collection = {
 	extends?: string[];
+	initial?: Omit<Option, 'value'>;
 	options?: Option[];
 	presentation?: Presentation;
 };

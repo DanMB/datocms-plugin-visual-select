@@ -32,7 +32,21 @@ const VisualSelect = ({ctx}: VisualSelectProps): JSX.Element => {
 		const collection = JSON.parse(ctx.parameters.collection as string) as Collection;
 		const presetOptions = (collection.extends ?? []).flatMap((key) => allPresets[key]);
 
-		return [[...presetOptions, ...collection.options ?? []], collection.presentation ?? {}];
+		if (ctx.field.attributes.field_type === 'link') {
+			console.log(ctx)
+			console.log(ctx.parameters);
+			console.log(ctx.field.relationships)
+			console.log(ctx.field.attributes.validators)
+		}
+
+		const opts = [...presetOptions, ...collection.options ?? []];
+
+		if (collection.initial) opts.unshift({
+			...collection.initial,
+			value: ''
+		});
+
+		return [opts, collection.presentation ?? {}];
 	}, [ctx.parameters.collection, ctx.plugin.attributes.parameters.presets]);
 
 	const currentValue = useMemo(

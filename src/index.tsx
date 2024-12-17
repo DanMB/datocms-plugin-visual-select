@@ -19,7 +19,7 @@ connect({
 				id: 'visualSelect',
 				name: 'Visual Select',
 				type: 'editor',
-				fieldTypes: ['text', 'string'],
+				fieldTypes: ['text', 'string', 'link'],
 				configurable: true,
 			},
 		];
